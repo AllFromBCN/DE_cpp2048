@@ -139,6 +139,7 @@ void Map::move(char input)
 								map[i][j] = to_string(num1+num2);
 								map[k][j] = "0";
 								arr[k] = 0;
+								s_add(num1+num2);
 								break;
 							}
 						}
@@ -188,6 +189,7 @@ void Map::move(char input)
 								map[i][j] = to_string(num1+num2);
 								map[k][j] = "0";
 								arr[k] = 0;
+								s_add(num1+num2);
 								break;
 							}
 						}
@@ -236,6 +238,7 @@ void Map::move(char input)
 								map[i][j] = to_string(num1+num2);
 								map[i][k] = "0";
 								arr[k] = 0;
+								s_add(num1+num2);
 								break;
 							}
 						}
@@ -284,6 +287,7 @@ void Map::move(char input)
 								map[i][j] = to_string(num1+num2);
 								map[i][k] = "0";
 								arr[k] = 0;
+								s_add(num1+num2);
 								break;
 							}
 						}
