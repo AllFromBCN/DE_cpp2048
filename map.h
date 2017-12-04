@@ -5,11 +5,29 @@
 */
 
 #include "block.h"
+//#include "visual.h"
 #include <iostream>
 #include <random>
 #include <string>
 
 using namespace std;
+
+class Score{
+	int score;
+	
+public:
+	Score(){
+		score = 0;
+	}
+	
+	~Score(){}
+	
+	void s_add(int point)
+	{
+		score += point;
+		//아직 bonus인지는 확인 안되어있음. 확인과정은 map에서 진행해야함 
+	}
+};
 
 class Map{
 public:
@@ -32,6 +50,7 @@ public:
 	}
 	
 	make(){
+		Score score1;
 		random_device rd;
 		mt19937_64 rng(rd());
 		uniform_int_distribution<__int64> dist(1,size*size);
@@ -139,7 +158,7 @@ void Map::move(char input)
 								map[i][j] = to_string(num1+num2);
 								map[k][j] = "0";
 								arr[k] = 0;
-								s_add(num1+num2);
+								score1.s_add(num1+num2);
 								break;
 							}
 						}
@@ -189,7 +208,7 @@ void Map::move(char input)
 								map[i][j] = to_string(num1+num2);
 								map[k][j] = "0";
 								arr[k] = 0;
-								s_add(num1+num2);
+								score1.s_add(num1+num2);
 								break;
 							}
 						}
@@ -238,7 +257,7 @@ void Map::move(char input)
 								map[i][j] = to_string(num1+num2);
 								map[i][k] = "0";
 								arr[k] = 0;
-								s_add(num1+num2);
+								score1.s_add(num1+num2);
 								break;
 							}
 						}
@@ -287,7 +306,7 @@ void Map::move(char input)
 								map[i][j] = to_string(num1+num2);
 								map[i][k] = "0";
 								arr[k] = 0;
-								s_add(num1+num2);
+								score1.s_add(num1+num2);
 								break;
 							}
 						}
@@ -315,4 +334,6 @@ void Map::move(char input)
 	{
 		//방향키 입력 다시하도록 시키기..? 
 	}
+	
+	//show(score1, size);
 }
