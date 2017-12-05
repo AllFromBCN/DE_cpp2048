@@ -17,46 +17,53 @@ public:
 	Score(){
 		score = 0;
 	}
-	
+
 	~Score(){}
-	
+
 	void s_add(int point)
 	{
 		score += point;
-		//아직 bonus인지는 확인 안되어있음. 확인과정은 map에서 진행해야함 
+		//아직 bonus인지는 확인 안되어있음. 확인과정은 map에서 진행해야함
 	}
 };
 
 class Map : public Score{
 public:
 	int size;
-	int **map;
+	Block **map;
 
-	Map(){}
-	
+	Map(int size){
+    this->size = size;
+
+    Block **map = new *block[size];
+    for (int i=0; i<size; i++)
+      *map = new block[size];
+
+  }
+
 	~Map(){
 		delete[] map;
 		map = NULL;
 	}
-	
+
 	void make_map(int size){
-		
+
 		this->size = size;
-		
+
 		random_device rd;
 		mt19937_64 rng(rd());
-		uniform_int_distribution<__int64> dist(1,size*size); // random variable 만들기 위한 코드 
-		
+		uniform_int_distribution<__int64> dist(1,size*size); // random variable 만들기 위한 코드
+
 		map = new int*[size];
 		for(int i=0;i<size;i++)
 			map[i] = new int[size];
-		
+
 		for(int i=0; i<size; i++)
 		{
 			for(int j=0; j<size;j++)
 				map[i][j] = 0;
 		}
-		
+
 		for(int i=0; i<size; i++)
 		{
 			for(int j=0 ; j<size ; j++)
@@ -64,38 +71,49 @@ public:
 				cout << map[i][j];
 			}
 			cout << endl;
-		 } 
+		 }
 	}
-	
+
 	//void operator+(Block b);
 	bool check();
-	void move(char input); // 방향키값 
+	void move(char input); // 방향키값
 };
 
-/*void Map::operator+(Block b)
+/*
+Block b(i, j, num);
+// 1, 1, 4
+
+4 _ _ _
+_ _ _ _
+_ _ _ _
+_ _ _ _
+
+*/
+
+void Map::operator+(Block b)
 {
 	int rand = dist(rng);
 	int i,j;
-	
+
 	for(i=0; i<size; i++)
 	{
 		for(j=0;j<size;j++)
 		{
 			if(map[i][j] == 0)
 				rand--;
-				
+
 			if(rand == 0)
 				map[i][j] = b.num;
 		}
 	}
-}*/
+}
 
 bool Map::check()
 {
 	int i,j;
 	int center;
 	int temp;
-	
+
 	for(i=0;i<size;i++)
 	{
 		for(j=0;j<size;j++)
@@ -103,25 +121,25 @@ bool Map::check()
 			if(i%2 != j%2)
 				continue;
 			center = map[i][j];
-			
+
 			if(i-1>=0){
 				temp = map[i-1][j];
 				if(center == temp)
 					return true;
 			}
-			
+
 			if(j-1>=0){
 				temp = map[i][j-1];
 				if(center == temp)
 					return true;
 			}
-			
+
 			if(j+1<size){
 				temp = map[i][j+1];
 				if(center == temp)
 					return true;
 			}
-			
+
 			if(i+1<size){
 				temp = map[i][j+1];
 				if(center == temp)
@@ -140,10 +158,10 @@ void Map::move(char input)
 		{
 			int* arr = new int[size];
 			int i;
-			
+
 			for(i=0;i<size;i++)
 				arr[i] = (map[i][j] == 0) ? 0 : 1;
-			
+
 			for(i=0;i<size;i++)
 			{
 				if(arr[i] == 1)
@@ -164,9 +182,9 @@ void Map::move(char input)
 							}
 						}
 					}
-				}	
+				}
 			}
-			
+
 			int index = 0;
 			for(i=0;i<size;i++)
 			{
@@ -183,17 +201,17 @@ void Map::move(char input)
 			}
 		}
 	}
-	
+
 	else if(input == 'd')
 	{
 		for(int j=0;j<size;j++)
 		{
 			int* arr = new int[size];
 			int i;
-			
+
 			for(i=0;i<size;i++)
 				arr[i] = (map[i][j] == 0) ? 0 : 1;
-			
+
 			for(i=size-1;i>=0;i--)
 			{
 				if(arr[i] == 1)
@@ -214,7 +232,7 @@ void Map::move(char input)
 							}
 						}
 					}
-				}	
+				}
 			}
 			int index = size-1;
 			for(i=size-1;i>=0;i--)
@@ -232,17 +250,17 @@ void Map::move(char input)
 			}
 		}
 	}
-	
+
 	else if(input == 'l')
 	{
 		for(int i=0;i<size;i++)
 		{
 			int* arr = new int[size];
 			int j;
-			
+
 			for(j=0;j<size;j++)
 				arr[j] = (map[i][j] == 0) ? 0 : 1;
-			
+
 			for(j=0;j<size;j++)
 			{
 				if(arr[j] == 1)
@@ -263,7 +281,7 @@ void Map::move(char input)
 							}
 						}
 					}
-				}	
+				}
 			}
 			int index = 0;
 			for(j=0;j<size;j++)
@@ -281,17 +299,17 @@ void Map::move(char input)
 			}
 		}
 	}
-	
+
 	else if(input == 'r')
 	{
 		for(int i=0;i<size;i++)
 		{
 			int* arr = new int[size];
 			int j;
-			
+
 			for(j=size-1;j>=0;j--)
 				arr[j] = (map[i][j] == 0) ? 0 : 1;
-			
+
 			for(j=size-1;j>=0;j--)
 			{
 				if(arr[j] == 1)
@@ -312,7 +330,7 @@ void Map::move(char input)
 							}
 						}
 					}
-				}	
+				}
 			}
 			int index = size-1;
 			for(j=size-1;j>=0;j--)
@@ -330,9 +348,9 @@ void Map::move(char input)
 			}
 		}
 	}
-	
+
 	else
 	{
-		//방향키 입력 다시하도록 시키기..? 
+		//방향키 입력 다시하도록 시키기..?
 	}
 }
