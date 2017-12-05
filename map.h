@@ -4,18 +4,16 @@
 연산자 오버로딩 (Map m1 + Block b1) : 맵에 블록 얹기
 */
 
-#include "block.h"
-//#include "visual.h"
+//#include "block.h"
 #include <iostream>
 #include <random>
-#include <string>
 
 using namespace std;
 
 class Score{
-	int score;
-	
 public:
+	int score;
+
 	Score(){
 		score = 0;
 	}
@@ -29,49 +27,52 @@ public:
 	}
 };
 
-class Map{
+class Map : public Score{
 public:
 	int size;
-	string **map;
+	int **map;
 
-	Map(){
-		size = 4;
-		make();
-	}
-	
-	Map(int size){
-		this->size = size; // main에서 size가 4이상인지 check해야함
-		 make();
-	}
+	Map(){}
 	
 	~Map(){
 		delete[] map;
 		map = NULL;
 	}
 	
-	make(){
-		Score score1;
+	void make_map(int size){
+		
+		this->size = size;
+		
 		random_device rd;
 		mt19937_64 rng(rd());
-		uniform_int_distribution<__int64> dist(1,size*size);
+		uniform_int_distribution<__int64> dist(1,size*size); // random variable 만들기 위한 코드 
 		
-		map = new string*[size];
+		map = new int*[size];
 		for(int i=0;i<size;i++)
-			map[i] = new string[size];
+			map[i] = new int[size];
 		
 		for(int i=0; i<size; i++)
 		{
 			for(int j=0; j<size;j++)
-				map[i][j] = "0";
+				map[i][j] = 0;
 		}
+		
+		for(int i=0; i<size; i++)
+		{
+			for(int j=0 ; j<size ; j++)
+			{
+				cout << map[i][j];
+			}
+			cout << endl;
+		 } 
 	}
 	
-	void operator+(Block b);
+	//void operator+(Block b);
 	bool check();
 	void move(char input); // 방향키값 
 };
 
-void Map::operator+(Block b)
+/*void Map::operator+(Block b)
 {
 	int rand = dist(rng);
 	int i,j;
@@ -80,14 +81,14 @@ void Map::operator+(Block b)
 	{
 		for(j=0;j<size;j++)
 		{
-			if(map[i][j] == "0")
+			if(map[i][j] == 0)
 				rand--;
 				
 			if(rand == 0)
 				map[i][j] = b.num;
 		}
 	}
-}
+}*/
 
 bool Map::check()
 {
@@ -101,28 +102,28 @@ bool Map::check()
 		{
 			if(i%2 != j%2)
 				continue;
-			center = stoi(map[i][j]);
+			center = map[i][j];
 			
 			if(i-1>=0){
-				temp = stoi(map[i-1][j]);
+				temp = map[i-1][j];
 				if(center == temp)
 					return true;
 			}
 			
 			if(j-1>=0){
-				temp = stoi(map[i][j-1]);
+				temp = map[i][j-1];
 				if(center == temp)
 					return true;
 			}
 			
 			if(j+1<size){
-				temp = stoi(map[i][j+1]);
+				temp = map[i][j+1];
 				if(center == temp)
 					return true;
 			}
 			
 			if(i+1<size){
-				temp = stoi(map[i][j+1]);
+				temp = map[i][j+1];
 				if(center == temp)
 					return true;
 			}
@@ -141,24 +142,24 @@ void Map::move(char input)
 			int i;
 			
 			for(i=0;i<size;i++)
-				arr[i] = (map[i][j] == "0") ? 0 : 1;
+				arr[i] = (map[i][j] == 0) ? 0 : 1;
 			
 			for(i=0;i<size;i++)
 			{
 				if(arr[i] == 1)
 				{
-					int num1 = stoi(map[i][j]);
+					int num1 = map[i][j];
 					for(int k=i+1;k<size;k++)
 					{
 						if(arr[k] == 1)
 						{
-							int num2 = stoi(map[k][j]);
+							int num2 = map[k][j];
 							if(num1 == num2)
 							{
-								map[i][j] = to_string(num1+num2);
-								map[k][j] = "0";
+								map[i][j] = num1+num2;
+								map[k][j] = 0;
 								arr[k] = 0;
-								score1.s_add(num1+num2);
+								//score.s_add(num1+num2);
 								break;
 							}
 						}
@@ -174,7 +175,7 @@ void Map::move(char input)
 					if(index != i)
 					{
 						map[index][j] = map[i][j];
-						map[i][j] = "0";
+						map[i][j] = 0;
 						arr[i] = 0;
 						index++;
 					}
@@ -191,24 +192,24 @@ void Map::move(char input)
 			int i;
 			
 			for(i=0;i<size;i++)
-				arr[i] = (map[i][j] == "0") ? 0 : 1;
+				arr[i] = (map[i][j] == 0) ? 0 : 1;
 			
 			for(i=size-1;i>=0;i--)
 			{
 				if(arr[i] == 1)
 				{
-					int num1 = stoi(map[i][j]);
+					int num1 = map[i][j];
 					for(int k=i-1;k>=0;k--)
 					{
 						if(arr[k] == 1)
 						{
-							int num2 = stoi(map[k][j]);
+							int num2 = map[k][j];
 							if(num1 == num2)
 							{
-								map[i][j] = to_string(num1+num2);
-								map[k][j] = "0";
+								map[i][j] = num1+num2;
+								map[k][j] = 0;
 								arr[k] = 0;
-								score1.s_add(num1+num2);
+								//score.s_add(num1+num2);
 								break;
 							}
 						}
@@ -223,7 +224,7 @@ void Map::move(char input)
 					if(index != i)
 					{
 						map[index][j] = map[i][j];
-						map[i][j] = "0";
+						map[i][j] = 0;
 						arr[i] = 0;
 						index--;
 					}
@@ -240,24 +241,24 @@ void Map::move(char input)
 			int j;
 			
 			for(j=0;j<size;j++)
-				arr[j] = (map[i][j] == "0") ? 0 : 1;
+				arr[j] = (map[i][j] == 0) ? 0 : 1;
 			
 			for(j=0;j<size;j++)
 			{
 				if(arr[j] == 1)
 				{
-					int num1 = stoi(map[i][j]);
+					int num1 = map[i][j];
 					for(int k=j+1;k<size;k++)
 					{
 						if(arr[k] == 1)
 						{
-							int num2 = stoi(map[i][k]);
+							int num2 = map[i][k];
 							if(num1 == num2)
 							{
-								map[i][j] = to_string(num1+num2);
-								map[i][k] = "0";
+								map[i][j] = num1+num2;
+								map[i][k] = 0;
 								arr[k] = 0;
-								score1.s_add(num1+num2);
+								//score.s_add(num1+num2);
 								break;
 							}
 						}
@@ -272,7 +273,7 @@ void Map::move(char input)
 					if(index != i)
 					{
 						map[i][index] = map[i][j];
-						map[i][j] = "0";
+						map[i][j] = 0;
 						arr[j] = 0;
 						index++;
 					}
@@ -289,24 +290,24 @@ void Map::move(char input)
 			int j;
 			
 			for(j=size-1;j>=0;j--)
-				arr[j] = (map[i][j] == "0") ? 0 : 1;
+				arr[j] = (map[i][j] == 0) ? 0 : 1;
 			
 			for(j=size-1;j>=0;j--)
 			{
 				if(arr[j] == 1)
 				{
-					int num1 = stoi(map[i][j]);
+					int num1 = map[i][j];
 					for(int k=j-1;k>=0;k--)
 					{
 						if(arr[k] == 1)
 						{
-							int num2 = stoi(map[i][k]);
+							int num2 = map[i][k];
 							if(num1 == num2)
 							{
-								map[i][j] = to_string(num1+num2);
-								map[i][k] = "0";
+								map[i][j] = num1+num2;
+								map[i][k] = 0;
 								arr[k] = 0;
-								score1.s_add(num1+num2);
+								//score.s_add(num1+num2);
 								break;
 							}
 						}
@@ -321,7 +322,7 @@ void Map::move(char input)
 					if(index != i)
 					{
 						map[i][index] = map[i][j];
-						map[i][j] = "0";
+						map[i][j] = 0;
 						arr[j] = 0;
 						index--;
 					}
@@ -334,6 +335,4 @@ void Map::move(char input)
 	{
 		//방향키 입력 다시하도록 시키기..? 
 	}
-	
-	//show(score1, size);
 }
