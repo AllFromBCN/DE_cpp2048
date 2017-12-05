@@ -35,7 +35,7 @@ public:
 	Map(int size){
     this->size = size;
 
-    Block **map = new *block[size];
+    this->**map = new *block[size];
     for (int i=0; i<size; i++)
       *map = new block[size];
 
