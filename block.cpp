@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 //
 // Created by 정수민 on 2017. 12. 5..
 //
 
+=======
+>>>>>>> a06a74c11b85565082ab833b08e6a146c9982b3e
 #define kUp 119 // to delete
 #define kDown 115 // to delete
 #define kLeft 97 // to delete
@@ -11,6 +14,7 @@
 #include "block.h"
 using namespace std;
 
+<<<<<<< HEAD
 Block::Block(int row, int col, int num, bool bonus){
     this->row = row;
     this->col = col;
@@ -37,6 +41,21 @@ void Block::setNum(int num)
 { this->num = num; }
 void Block::setBonus(bool bonus)
 { this->bonus = bonus; }
+=======
+Block::Block()
+{
+	this->row = -1;
+	this->col = -1;
+	this->num = 0;
+	this->bonus = false;
+}
+Block::Block(int row, int col, int num, bool bonus) {
+	this->row = row;
+	this->col = col;
+	this->num = num;
+	this->bonus = bonus;
+};
+>>>>>>> a06a74c11b85565082ab833b08e6a146c9982b3e
 
 /*
 template <typename T>
