@@ -1,13 +1,8 @@
-/*
-기본사항 : 생성자, 소멸자, 복사생성자, this, 예외처리
-상속, 오버라이딩
-*/
+//
+// Created by 정수민 on 2017. 12. 5..
+//
 
-#include "block.h"
-#include <iostream>
-using namespace std;
+#ifndef CPP2048_ITEMBLOCK_H
+#define CPP2048_ITEMBLOCK_H
 
-
-class ItemBlock inherits Block{
-
-}
+#endif //CPP2048_ITEMBLOCK_H

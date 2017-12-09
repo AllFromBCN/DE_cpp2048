@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/JeongSooMin/Desktop/GitHubDesktop/cpp2048/block.h
+iostream
+-
+
+/Users/JeongSooMin/Desktop/GitHubDesktop/cpp2048/main.cpp
+block.h
+/Users/JeongSooMin/Desktop/GitHubDesktop/cpp2048/block.h
+iostream
+-
+
