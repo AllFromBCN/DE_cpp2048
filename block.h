@@ -13,30 +13,21 @@ Template : input으로 방향키 혹은 알파벳 //todo
 using namespace std;
 
 class Block{
-    int row = -1;
-    int col = -1;
     int num = -1;
     bool bonus = false;
 public:
     Block();
-    Block(int, int, int, bool);
+	Block(int, bool);
     ~Block();
 
     // getters
-    int getRow();
-    int getCol();
     int getNum();
     bool getBonus();
 
     //setters
-    void setRow(int);
-    void setCol(int);
     void setNum(int);
     void setBonus(bool);
 
-    template <typename T>
-    void input(T& inputDir);
-    void input(int);
 };
 
 #endif
