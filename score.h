@@ -15,4 +15,5 @@ public:
 	Score();
 	~Score();
 	void addScore(Block, Block);
+	int getScore();
 };
