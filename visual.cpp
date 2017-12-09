@@ -18,7 +18,7 @@ using namespace std;
 
 void Visual::show()
 {
-    cout << "Score : " << score << endl;
+    cout << "Score : " << map.operateScore().getScore() << endl;
     for(int i=0; i<size; i++)
     {
         for(int j=0; j<size; j++)
