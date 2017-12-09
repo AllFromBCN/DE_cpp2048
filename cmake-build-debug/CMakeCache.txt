@@ -135,7 +135,7 @@ CMAKE_OSX_DEPLOYMENT_TARGET:STRING=
 CMAKE_OSX_SYSROOT:STRING=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=cpp2048
+CMAKE_PROJECT_NAME:STATIC=headerTest
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/ranlib
@@ -194,6 +194,12 @@ cpp2048_BINARY_DIR:STATIC=/Users/JeongSooMin/Desktop/GitHubDesktop/cpp2048/cmake
 
 //Value Computed by CMake
 cpp2048_SOURCE_DIR:STATIC=/Users/JeongSooMin/Desktop/GitHubDesktop/cpp2048
+
+//Value Computed by CMake
+headerTest_BINARY_DIR:STATIC=/Users/JeongSooMin/Desktop/GitHubDesktop/cpp2048/cmake-build-debug
+
+//Value Computed by CMake
+headerTest_SOURCE_DIR:STATIC=/Users/JeongSooMin/Desktop/GitHubDesktop/cpp2048
 
 
 ########################

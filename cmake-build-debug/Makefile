@@ -111,17 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named cpp2048
+# Target rules for targets named headerTest
 
 # Build rule for target.
-cpp2048: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 cpp2048
-.PHONY : cpp2048
+headerTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 headerTest
+.PHONY : headerTest
 
 # fast build rule for target.
-cpp2048/fast:
-	$(MAKE) -f CMakeFiles/cpp2048.dir/build.make CMakeFiles/cpp2048.dir/build
-.PHONY : cpp2048/fast
+headerTest/fast:
+	$(MAKE) -f CMakeFiles/headerTest.dir/build.make CMakeFiles/headerTest.dir/build
+.PHONY : headerTest/fast
+
+block.o: block.cpp.o
+
+.PHONY : block.o
+
+# target to build an object file
+block.cpp.o:
+	$(MAKE) -f CMakeFiles/headerTest.dir/build.make CMakeFiles/headerTest.dir/block.cpp.o
+.PHONY : block.cpp.o
+
+block.i: block.cpp.i
+
+.PHONY : block.i
+
+# target to preprocess a source file
+block.cpp.i:
+	$(MAKE) -f CMakeFiles/headerTest.dir/build.make CMakeFiles/headerTest.dir/block.cpp.i
+.PHONY : block.cpp.i
+
+block.s: block.cpp.s
+
+.PHONY : block.s
+
+# target to generate assembly for a file
+block.cpp.s:
+	$(MAKE) -f CMakeFiles/headerTest.dir/build.make CMakeFiles/headerTest.dir/block.cpp.s
+.PHONY : block.cpp.s
 
 main.o: main.cpp.o
 
@@ -129,7 +156,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/cpp2048.dir/build.make CMakeFiles/cpp2048.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/headerTest.dir/build.make CMakeFiles/headerTest.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -138,7 +165,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/cpp2048.dir/build.make CMakeFiles/cpp2048.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/headerTest.dir/build.make CMakeFiles/headerTest.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -147,8 +174,89 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/cpp2048.dir/build.make CMakeFiles/cpp2048.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/headerTest.dir/build.make CMakeFiles/headerTest.dir/main.cpp.s
 .PHONY : main.cpp.s
+
+map.o: map.cpp.o
+
+.PHONY : map.o
+
+# target to build an object file
+map.cpp.o:
+	$(MAKE) -f CMakeFiles/headerTest.dir/build.make CMakeFiles/headerTest.dir/map.cpp.o
+.PHONY : map.cpp.o
+
+map.i: map.cpp.i
+
+.PHONY : map.i
+
+# target to preprocess a source file
+map.cpp.i:
+	$(MAKE) -f CMakeFiles/headerTest.dir/build.make CMakeFiles/headerTest.dir/map.cpp.i
+.PHONY : map.cpp.i
+
+map.s: map.cpp.s
+
+.PHONY : map.s
+
+# target to generate assembly for a file
+map.cpp.s:
+	$(MAKE) -f CMakeFiles/headerTest.dir/build.make CMakeFiles/headerTest.dir/map.cpp.s
+.PHONY : map.cpp.s
+
+score.o: score.cpp.o
+
+.PHONY : score.o
+
+# target to build an object file
+score.cpp.o:
+	$(MAKE) -f CMakeFiles/headerTest.dir/build.make CMakeFiles/headerTest.dir/score.cpp.o
+.PHONY : score.cpp.o
+
+score.i: score.cpp.i
+
+.PHONY : score.i
+
+# target to preprocess a source file
+score.cpp.i:
+	$(MAKE) -f CMakeFiles/headerTest.dir/build.make CMakeFiles/headerTest.dir/score.cpp.i
+.PHONY : score.cpp.i
+
+score.s: score.cpp.s
+
+.PHONY : score.s
+
+# target to generate assembly for a file
+score.cpp.s:
+	$(MAKE) -f CMakeFiles/headerTest.dir/build.make CMakeFiles/headerTest.dir/score.cpp.s
+.PHONY : score.cpp.s
+
+visual.o: visual.cpp.o
+
+.PHONY : visual.o
+
+# target to build an object file
+visual.cpp.o:
+	$(MAKE) -f CMakeFiles/headerTest.dir/build.make CMakeFiles/headerTest.dir/visual.cpp.o
+.PHONY : visual.cpp.o
+
+visual.i: visual.cpp.i
+
+.PHONY : visual.i
+
+# target to preprocess a source file
+visual.cpp.i:
+	$(MAKE) -f CMakeFiles/headerTest.dir/build.make CMakeFiles/headerTest.dir/visual.cpp.i
+.PHONY : visual.cpp.i
+
+visual.s: visual.cpp.s
+
+.PHONY : visual.s
+
+# target to generate assembly for a file
+visual.cpp.s:
+	$(MAKE) -f CMakeFiles/headerTest.dir/build.make CMakeFiles/headerTest.dir/visual.cpp.s
+.PHONY : visual.cpp.s
 
 # Help Target
 help:
@@ -158,10 +266,22 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... cpp2048"
+	@echo "... headerTest"
+	@echo "... block.o"
+	@echo "... block.i"
+	@echo "... block.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... map.o"
+	@echo "... map.i"
+	@echo "... map.s"
+	@echo "... score.o"
+	@echo "... score.i"
+	@echo "... score.s"
+	@echo "... visual.o"
+	@echo "... visual.i"
+	@echo "... visual.s"
 .PHONY : help
 
 

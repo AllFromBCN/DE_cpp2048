@@ -13,7 +13,6 @@
 using namespace std;
 
 class Map{
-<<<<<<< HEAD
     int size = 0;
 
 public:
@@ -28,17 +27,4 @@ public:
 };
 
 #endif
-=======
-public:
-	int size;
-	Block **map;
-	Map(int s);
-	~Map();
 
-	void operator+(Block b);
-	bool check();
-	void move(char input); // 방향키값 
-};
-
-#endif
->>>>>>> a06a74c11b85565082ab833b08e6a146c9982b3e

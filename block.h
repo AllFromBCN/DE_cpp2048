@@ -8,7 +8,6 @@
 Template : input으로 방향키 혹은 알파벳 //todo
 오버로딩 : input으로 int값 (일부 template 특수화)
 */
-<<<<<<< HEAD
 #pragma once
 #ifndef BLOCK_H
 #define BLOCK_H
@@ -21,17 +20,7 @@ class Block{
     int col = -1;
     int num = -1;
     bool bonus = false;
-=======
-
-#pragma once
-#ifndef BLOCK_H
-#define BLOCK_H
->>>>>>> a06a74c11b85565082ab833b08e6a146c9982b3e
-
-class Block
-{
 public:
-<<<<<<< HEAD
     Block();
     Block(int, int, int, bool);
     ~Block();
@@ -51,16 +40,6 @@ public:
     template <typename T>
     void input(T& inputDir);
     void input(int);
-};
-=======
-	int row;
-	int col;
-	int num;
-	bool bonus;
+}
 
-	Block();
->>>>>>> a06a74c11b85565082ab833b08e6a146c9982b3e
-
-	Block(int row, int col, int num, bool bonus);
-};
 #endif
