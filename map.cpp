@@ -9,6 +9,10 @@ using namespace std;
 Map::Map() {}
 
 Map::~Map() {
+    for (int i=0; i<size; i++)
+    {
+        delete[] this->map[i];
+    }
     delete[] map;
     map = NULL;
 }
