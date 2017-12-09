@@ -1,7 +1,3 @@
-//
-// Created by 정수민 on 2017. 12. 5..
-//
-
 /*
 기본사항 : 생성자, 소멸자, 복사생성자, this
 상속 : 기본블록, 아이템블록
@@ -13,6 +9,7 @@ Template : input으로 방향키 혹은 알파벳 //todo
 #define BLOCK_H
 
 #include <iostream>
+
 using namespace std;
 
 class Block{
@@ -40,6 +37,6 @@ public:
     template <typename T>
     void input(T& inputDir);
     void input(int);
-}
+};
 
 #endif
