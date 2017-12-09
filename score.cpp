@@ -15,3 +15,8 @@ void Score::addScore(Block b1, Block b2)
 	{temp *= 2;}
 	score += temp;
 }
+
+int Score::getScore()
+{
+	return score;
+}
