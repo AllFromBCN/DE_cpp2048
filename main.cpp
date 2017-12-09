@@ -24,11 +24,15 @@ int main()
 			if (enter == "s")
 			{
 				m.setMap(4);
+				m.operator+(2);
+				m.operator+(2);
 				break;
 			}
 			else if (enter >= "5"&& enter <= "9")
 			{
 				m.setMap(stoi(enter));
+				m.operator+(2);
+				m.operator+(2);
 				break;
 			}
 			else
@@ -39,7 +43,24 @@ int main()
 			cerr << "Out of range. Please re-enter" << endl;
 		}
 	}
-	v.show(m);
+	
+
+	while (1)
+	{
+		v.show(m);
+		/*v.enter();//입력키 받는부분
+		m.move();*/
+		m.operator+();
+		if (m.countEmpty() == 0)
+		{
+			if (m.check() == false)
+			{
+				cout << "Game Over!" << endl;
+				return 0;
+			}
+		}
+		
+	}
 	cin >> i;
 
 	return 0;
