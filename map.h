@@ -21,6 +21,7 @@ public:
 
 	Block setMap(int);
     void operator+();
+	void operator+(int num);
     bool check();
     void move(char input); // 방향키값
 	Score operateScore() { return score; }
