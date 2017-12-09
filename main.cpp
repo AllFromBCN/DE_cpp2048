@@ -9,7 +9,7 @@ using namespace std;
 int main()
 {
 	Map m(4);
-	cout << m.map[1][1].col << endl;
+	cout << m.map[1][1].getCol() << endl;
 
 	int in;
 	cin >> in;
