@@ -1,9 +1,10 @@
-
 #include "map.h"
 #include "block.h"
 #include <iostream>
 #include <random>
 using namespace std;
+
+Map::Map() {}
 
 Map::Map(int s) {
     this->size = s;
@@ -19,20 +20,21 @@ Map::~Map() {
 
 void Map::operator+(Block b)
 {
-    int ranNum = rand() % (size*size) +1;
-    int i,j;
+	int ranNum = rand() % (size*size) + 1;
+	int i, j;
 
-    for(i=0; i<size; i++)
-    {
-        for(j=0;j<size;j++)
-        {
-            if(map[i][j].getNum() == 0)
-                ranNum--;
+	for (i = 0; i < size; i++)
+	{
+		for (j = 0; j < size; j++)
+		{
+			if (map[i][j].getNum() == -1)
+				ranNum--;
 
-            if(ranNum == 0)
-                map[i][j].setNum(b.getNum());
-        }
-    }
+			if (ranNum == 0)
+				map[i][j].setNum(b.getNum());
+		}
+	}
+}
 
 /*
  * random_device rd;
@@ -43,47 +45,47 @@ void Map::operator+(Block b)
 	int i,j;
 
  */
- bool Map::check()
+bool Map::check()
 {
-    int i, j;
-    int center;
-    int temp;
+	int i, j;
+	int center;
+	int temp;
 
-    for (i = 0; i<size; i++)
-    {
-        for (j = 0; j<size; j++)
-        {
-            if (i % 2 != j % 2)
-                continue;
-            center = map[i][j].getNum();
+	for (i = 0; i < size; i++)
+	{
+		for (j = 0; j < size; j++)
+		{
+			if (i % 2 != j % 2)
+				continue;
+			center = map[i][j].getNum();
 
-            if (i - 1 >= 0) {
-                temp = map[i - 1][j].getNum();
-                if (center == temp)
-                    return true;
-            }
+			if (i - 1 >= 0) {
+				temp = map[i - 1][j].getNum();
+				if (center == temp)
+					return true;
+			}
 
-            if (j - 1 >= 0) {
-                temp = map[i][j - 1].getNum();
-                if (center == temp)
-                    return true;
-            }
+			if (j - 1 >= 0) {
+				temp = map[i][j - 1].getNum();
+				if (center == temp)
+					return true;
+			}
 
-            if (j + 1<size) {
-                temp = map[i][j + 1].getNum();
-                if (center == temp)
-                    return true;
-            }
+			if (j + 1 < size) {
+				temp = map[i][j + 1].getNum();
+				if (center == temp)
+					return true;
+			}
 
-            if (i + 1<size) {
-                temp = map[i][j + 1].getNum();
-                if (center == temp)
-                    return true;
-            }
-        }
-    }
-    return false;
-
+			if (i + 1 < size) {
+				temp = map[i][j + 1].getNum();
+				if (center == temp)
+					return true;
+			}
+		}
+	}
+	return false;
+}
 
 void Map::move(char input) {
     if (input == 'u') {
@@ -92,7 +94,7 @@ void Map::move(char input) {
             int i;
 
             for (i = 0; i < size; i++)
-                arr[i] = (map[i][j].getNum() == 0) ? 0 : 1;
+                arr[i] = (map[i][j].getNum() == -1) ? 0 : 1;
 
             for (i = 0; i < size; i++) {
                 if (arr[i] == 1) {
@@ -101,10 +103,10 @@ void Map::move(char input) {
                         if (arr[k] == 1) {
                             int num2 = map[k][j].getNum();
                             if (num1 == num2) {
+								score.addScore(map[i][j], map[k][j]);
                                 map[i][j].setNum(num1 + num2);
-                                map[k][j].setNum(0);
+                                map[k][j].setNum(-1);
                                 arr[k] = 0;
-                                //score.s_add(num1+num2);
                                 break;
                             }
                         }
@@ -117,7 +119,7 @@ void Map::move(char input) {
                 if (arr[i] == 1) {
                     if (index != i) {
                         map[index][j] = map[i][j];
-                        map[i][j].setNum(0);
+                        map[i][j].setNum(-1);
                         map[i][j].setBonus(0);
                         arr[i] = 0;
                         index++;
@@ -131,7 +133,7 @@ void Map::move(char input) {
             int i;
 
             for (i = 0; i < size; i++)
-                arr[i] = (map[i][j].getNum() == 0) ? 0 : 1;
+                arr[i] = (map[i][j].getNum() == -1) ? 0 : 1;
 
             for (i = size - 1; i >= 0; i--) {
                 if (arr[i] == 1) {
@@ -140,10 +142,10 @@ void Map::move(char input) {
                         if (arr[k] == 1) {
                             int num2 = map[k][j].getNum();
                             if (num1 == num2) {
+								score.addScore(map[i][j], map[k][j]);
                                 map[i][j].setNum(num1 + num2);
-                                map[k][j].setNum(0);
+                                map[k][j].setNum(-1);
                                 arr[k] = 0;
-                                //score.s_add(num1+num2);
                                 break;
                             }
                         }
@@ -155,7 +157,7 @@ void Map::move(char input) {
                 if (arr[i] == 1) {
                     if (index != i) {
                         map[index][j] = map[i][j];
-                        map[i][j].setNum(0);
+                        map[i][j].setNum(-1);
                         map[i][j].setBonus(0);
                         arr[i] = 0;
                         index--;
@@ -169,7 +171,7 @@ void Map::move(char input) {
             int j;
 
             for (j = 0; j < size; j++)
-                arr[j] = (map[i][j].getNum() == 0) ? 0 : 1;
+                arr[j] = (map[i][j].getNum() == -1) ? 0 : 1;
 
             for (j = 0; j < size; j++) {
                 if (arr[j] == 1) {
@@ -178,10 +180,10 @@ void Map::move(char input) {
                         if (arr[k] == 1) {
                             int num2 = map[i][k].getNum();
                             if (num1 == num2) {
+								score.addScore(map[i][j], map[k][j]);
                                 map[i][j].setNum(num1 + num2);
-                                map[i][k].setNum(0);
+                                map[i][k].setNum(-1);
                                 arr[k] = 0;
-                                //score.s_add(num1+num2);
                                 break;
                             }
                         }
@@ -193,7 +195,7 @@ void Map::move(char input) {
                 if (arr[j] == 1) {
                     if (index != i) {
                         map[i][index] = map[i][j];
-                        map[i][j].setNum(0);
+                        map[i][j].setNum(-1);
                         map[i][j].setBonus(0);
                         arr[j] = 0;
                         index++;
@@ -207,7 +209,7 @@ void Map::move(char input) {
             int j;
 
             for (j = size - 1; j >= 0; j--)
-                arr[j] = (map[i][j].getNum() == 0) ? 0 : 1;
+                arr[j] = (map[i][j].getNum() == -1) ? 0 : 1;
 
             for (j = size - 1; j >= 0; j--) {
                 if (arr[j] == 1) {
@@ -216,10 +218,10 @@ void Map::move(char input) {
                         if (arr[k] == 1) {
                             int num2 = map[i][k].getNum();
                             if (num1 == num2) {
+								score.addScore(map[i][j], map[k][j]);
                                 map[i][j].setNum(num1 + num2);
-                                map[i][k].setNum(0);
+                                map[i][k].setNum(-1);
                                 arr[k] = 0;
-                                //score.s_add(num1+num2);
                                 break;
                             }
                         }
@@ -231,7 +233,7 @@ void Map::move(char input) {
                 if (arr[j] == 1) {
                     if (index != i) {
                         map[i][index] = map[i][j];
-                        map[i][j].setNum(0);
+                        map[i][j].setNum(-1);
                         map[i][j].setBonus(0);
                         arr[j] = 0;
                         index--;
@@ -239,7 +241,8 @@ void Map::move(char input) {
                 }
             }
         }
-    } else {
+    }
+	else {
         //방향키 입력 다시하도록 시키기..?
     }
 }
