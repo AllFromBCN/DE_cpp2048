@@ -1,5 +1,6 @@
 #include "map.h"
 #include "block.h"
+#include "score.h"
 
 #include <iostream>
 #include <random>
@@ -7,16 +8,17 @@ using namespace std;
 
 Map::Map() {}
 
-Map::Map(int s) {
-    this->size = s;
-    map = new Block*[s];
-    for (int i = 0; i<s; i++)
-        map[i] = new Block[s];
-}
-
 Map::~Map() {
     delete[] map;
     map = NULL;
+}
+
+Block Map::setMap(int s) {
+	this->size = s;
+	map = new Block*[s];
+	for (int i = 0; i<s; i++)
+		map[i] = new Block[s];
+	return **map;
 }
 
 void Map::operator+(Block b)
