@@ -13,78 +13,44 @@ const 함수 : map print 시
 
 using namespace std;
 
-void Visual::show()
+void Visual::show(Map map)
 {
 	cout << "Score : " << map.operateScore().getScore()<< endl;
-	for (int i = 0; i<size; i++)
+	for (int i = 0; i<map.getSize(); i++)
 	{
-		for (int j = 0; j<size; j++)
+		for (int j = 0; j<map.getSize(); j++)
 		{
-			char temp[5];
+			char temp[6];
 			for (int k = 0; k<4; k++)
 			{
 				temp[k] = '_';
 			}
 			temp[4] = ' ';
+			temp[5] = 0;
 
+			//cout << "temp : " << temp << endl;
 			int num = map.map[i][j].getNum();
+			//cout << "num : " << num;
 			int k=3;
-			while(1)
+			if (num != -1)
 			{
-				if(num!=0)
+				while (1)
 				{
-					temp[k--] = num%10;
-					num = num/10;
+					if (num != 0)
+					{
+						temp[k--] = (num % 10) + 48;
+						num = num / 10;
+					}
+					else break;
 				}
-				else break;
-			}
-			if(map.map[i][j].getBonus())
-			{
-				temp[k] = '@';
+				//cout << "temp : " << temp << endl;
+				if (map.map[i][j].getBonus())
+				{
+					temp[k] = '@';
+				}
 			}
 			cout << temp;
 		}
 		cout << endl;
 	}
 };
-
-void Visual::start()
-{
-	string enter;
-	cout << "You make the 2048 tile!" << endl;
-	cout << "You can use the A W D S button" << endl;
-	cout << "If you want to start with 4x4 map, then enter the 's'" << endl;
-	cout << "If you want to start with a map larger then 4X4, then enter the number between 5 and 9" << endl;
-	while (1)
-	{
-		getline(cin, enter);
-		try {
-			if (enter == "s")
-			{
-				setMap(defaultSize);
-				return;
-				//Map orgMap(defaultSize); // original Map generation
-				//return orgMap;
-			}
-			else if (enter >= "5"&& enter <= "9")
-			{
-				setMap(stoi(enter));
-				return;
-				//Map orgMap(stoi(enter));
-				//return orgMap;
-			}
-			else
-				throw enter;
-		}
-		catch (string exception) {
-			cout << "You entered the " << exception << "." << endl;
-			cerr << "Out of range. Please re-enter" << endl;
-		}
-	}
-}
-
-void Visual::setMap(int size)
-{
-	this->size = size;
-	this->map = Map(size);
-}
