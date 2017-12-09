@@ -1,7 +1,3 @@
-//
-// Created by 정수민 on 2017. 12. 9..
-//
-
 #ifndef VISUAL_H
 #define VISUAL_H
 
@@ -12,22 +8,24 @@
 기본사항 : 생성자, 소멸자, 복사생성자, this, 예외처리
 const 함수 : map print 시
 */
-#include "Map.h"
-#include "Score.h"
+#include "map.h"
+#include "score.h"
 #include <iostream>
 #include <string>
 
 using namespace std;
 
-class Visual{
-    int score;
-    int size;
+class Visual {
+	int size;
+	Map map;
 
 public:
-    Visual(){}
-    ~Visual(){}
+	Visual() {}
+	~Visual() {}
 
-    void show();
-    Map start();
+	void show();
+	void start();
+	void setMap(int);
+	
 };
 #endif //VISUAL_H
