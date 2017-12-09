@@ -14,15 +14,16 @@ class Map{
 	Score score;
 
 public:
-    Block **map;
+	Block **map;
     Map();
-    Map(int s);
     ~Map();
 
+	Block setMap(int);
     void operator+(Block b);
     bool check();
     void move(char input); // 방향키값
-	Score operateScore() { return score; };
+	Score operateScore() { return score; }
+	int getSize() { return size; }
 };
 
 #endif
