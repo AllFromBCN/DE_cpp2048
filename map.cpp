@@ -74,6 +74,35 @@ void Map::operator+()
 	}
 }
 
+void Map::operator+(int num)
+{
+	//int ranNum = rand() % (size*size) + 1;
+	int ranNum = make_random(countEmpty());
+
+	for (int i = 0; i < size; i++)
+	{
+		for (int j = 0; j < size; j++)
+		{
+			if (map[i][j].getNum() == -1)
+				ranNum--;
+
+			if (ranNum == 0)
+			{
+				map[i][j].setNum(num);
+				if (b_count == 10)
+				{
+					map[i][j].setBonus(true);
+					b_count = 0;
+				}
+				else {
+					b_count++;
+				}
+			}
+
+		}
+	}
+}
+
 bool Map::check()
 {
 	int i, j;
