@@ -1,5 +1,6 @@
 #include "map.h"
 #include "block.h"
+
 #include <iostream>
 #include <random>
 using namespace std;
@@ -242,7 +243,7 @@ void Map::move(char input) {
             }
         }
     }
-	else {
+	/*else {
         //방향키 입력 다시하도록 시키기..?
-    }
+    }*/
 }
