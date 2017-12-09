@@ -5,26 +5,20 @@ Template : input으로 방향키 혹은 알파벳 //todo
 오버로딩 : input으로 int값 (일부 template 특수화)
 */
 
+#pragma once
 #ifndef BLOCK_H
-#define BLCOK_H
+#define BLOCK_H
 
-#include <iostream>
-using namespace std;
-
-class Block{
-  int row;
-  int col;
-  int num;
-  bool bonus = false;
-
+class Block
+{
 public:
-  Block(int, int, int){
+	int row;
+	int col;
+	int num;
+	bool bonus;
 
-  };
-  ~Block();
-  template <typename T>
-  void input(T& inputDir);
-  void input(int);
-}
+	Block();
 
+	Block(int row, int col, int num, bool bonus);
+};
 #endif
