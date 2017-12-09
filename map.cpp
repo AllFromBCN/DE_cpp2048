@@ -9,10 +9,6 @@ using namespace std;
 Map::Map() {}
 
 Map::~Map() {
-    for (int i=0; i<size; i++)
-    {
-        delete[] this->map[i];
-    }
     delete[] map;
     map = NULL;
 }
@@ -25,33 +21,59 @@ Block Map::setMap(int s) {
 	return **map;
 }
 
-void Map::operator+(Block b)
+int Map::countEmpty()
 {
-	int ranNum = rand() % (size*size) + 1;
-	int i, j;
-
-	for (i = 0; i < size; i++)
+	int count = 0;
+	for (int i; i < size; i++)
 	{
-		for (j = 0; j < size; j++)
+		for (int j = 0; j < size; j++)
+		{
+			if (map[i][j].getNum() == -1)
+				count++;
+		}
+	}
+	return count;
+}
+
+int make_random(int max)
+{
+	random_device rd;
+	mt19937_64 rng(rd());
+	uniform_int_distribution<__int64> dist(1, max); // random variable 만들기 위한 코드 
+
+	return dist(rng);
+}
+
+void Map::operator+()
+{
+	//int ranNum = rand() % (size*size) + 1;
+	int ranNum = make_random(countEmpty());
+	int temp = (ranNum % 2 == 0) ? 2 : 4;
+
+	for (int i = 0; i < size; i++)
+	{
+		for (int j = 0; j < size; j++)
 		{
 			if (map[i][j].getNum() == -1)
 				ranNum--;
 
 			if (ranNum == 0)
-				map[i][j].setNum(b.getNum());
+			{
+				map[i][j].setNum(temp);
+				if (b_count == 10)
+				{
+					map[i][j].setBonus(true);
+					b_count = 0;
+				}
+				else {
+					b_count++;
+				}
+			}
+				
 		}
 	}
 }
 
-/*
- * random_device rd;
-	mt19937_64 rng(rd());
-	uniform_int_distribution<__int64> dist(1, size*size); // random variable 만들기 위한 코드 
-
-	int rand = dist(rng);
-	int i,j;
-
- */
 bool Map::check()
 {
 	int i, j;
