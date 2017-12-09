@@ -22,6 +22,7 @@ public:
     void operator+(Block b);
     bool check();
     void move(char input); // 방향키값
+	Score operateScore(){return score};
 };
 
 #endif
