@@ -12,6 +12,7 @@ using namespace std;
 class Map{
     int size = 0;
 	Score score;
+	int b_count = 0;
 
 public:
 	Block **map;
@@ -19,12 +20,12 @@ public:
     ~Map();
 
 	Block setMap(int);
-    void operator+(Block b);
+    void operator+();
     bool check();
     void move(char input); // 방향키값
 	Score operateScore() { return score; }
 	int getSize() { return size; }
+	int countEmpty();
 };
 
 #endif
-
