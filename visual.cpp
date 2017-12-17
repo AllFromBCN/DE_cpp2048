@@ -3,34 +3,27 @@
 const 함수 : map print 시
 */
 
-#define defaultSize 4
+//#define defaultSize 4
 
-#include "map.h"
-#include "score.h"
 #include "visual.h"
-#include <iostream>
 #include <string>
 
 using namespace std;
 
-void Visual::show(Map map)
+void Visual::show(Map& map) const
 {
-	cout << "Score : " << map.operateScore().getScore()<< endl;
+	cout << "Score : " << map.showScore()<< endl;
 	for (int i = 0; i<map.getSize(); i++)
 	{
 		for (int j = 0; j<map.getSize(); j++)
 		{
 			char temp[6];
 			for (int k = 0; k<4; k++)
-			{
 				temp[k] = '_';
-			}
 			temp[4] = ' ';
 			temp[5] = 0;
-
-			//cout << "temp : " << temp << endl;
+			
 			int num = map.map[i][j].getNum();
-			//cout << "num : " << num;
 			int k=3;
 			if (num != -1)
 			{
@@ -43,14 +36,15 @@ void Visual::show(Map map)
 					}
 					else break;
 				}
-				//cout << "temp : " << temp << endl;
 				if (map.map[i][j].getBonus())
-				{
 					temp[k] = '@';
-				}
 			}
 			cout << temp;
 		}
 		cout << endl;
 	}
 };
+/*
+template <typename T>
+void Visual::input(T& inputDir);
+void Visual::input(int);*/
