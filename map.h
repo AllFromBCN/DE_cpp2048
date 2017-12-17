@@ -1,32 +1,30 @@
-#pragma once
 #ifndef MAP_H
 #define MAP_H
 
-#include "block.h"
 #include "score.h"
-#include <iostream>
-#include <stdlib.h>
 
 using namespace std;
 
 class Map{
     int size = 0;
-	Score score;
-	int b_count = 0;
+	Score map_score;
+	int b_count = 0; // bonus count -> 10번마다 bonus나오게
 
 public:
 	Block **map;
-    Map();
+	Map();
     ~Map();
 
-	Block setMap(int);
-    void operator+();
-	void operator+(int num);
-    bool check();
-    void move(char input); // 방향키값
-	Score operateScore() { return score; }
-	int getSize() { return size; }
-	int countEmpty();
-};
+	void setSize(int);
+	int getSize();
+	int showScore();
 
+	int countEmpty();
+	void operator+();
+	void operator+(int);
+	bool check();
+    void move(char input); // 방향키값
+};
+#else
 #endif
+
