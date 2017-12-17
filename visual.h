@@ -6,10 +6,8 @@ const 함수 : map print 시
 #ifndef VISUAL_H
 #define VISUAL_H
 
-#include "score.h"
 #include "map.h"
-#include <iostream>
-#include <string>
+#include "score.h"
 
 using namespace std;
 
@@ -18,7 +16,10 @@ public:
 	Visual() {}
 	~Visual() {}
 
-	void show(Map);
-	
+	void show(Map& map) const;
+	/*template <typename T>
+	void input(T& inputDir);
+	void input(int);*/
 };
-#endif //VISUAL_H
+#else
+#endif
