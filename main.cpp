@@ -1,8 +1,4 @@
-#include "block.h"
-#include "score.h"
-#include "map.h"
 #include "visual.h"
-#include <iostream>
 #include <string>
 
 using namespace std;
@@ -11,7 +7,7 @@ int main()
 {
 	Visual v;
 	string enter;
-	Map m;
+	Map ori_map;
 	int i;
 	cout << "You make the 2048 tile!" << endl;
 	cout << "You can use the A W D S button" << endl;
@@ -23,16 +19,16 @@ int main()
 		try {
 			if (enter == "s")
 			{
-				m.setMap(4);
-				m.operator+(2);
-				m.operator+(2);
+				ori_map.setSize(4);
+				ori_map.operator+(2);
+				ori_map.operator+(2);
 				break;
 			}
 			else if (enter >= "5"&& enter <= "9")
 			{
-				m.setMap(stoi(enter));
-				m.operator+(2);
-				m.operator+(2);
+				ori_map.setSize(stoi(enter));
+				ori_map.operator+(2);
+				ori_map.operator+(2);
 				break;
 			}
 			else
@@ -40,28 +36,23 @@ int main()
 		}
 		catch (string exception) {
 			cout << "You entered the " << exception << "." << endl;
-			cerr << "Out of range. Please re-enter" << endl;
+			cout << "Out of range. Please re-enter" << endl;
 		}
 	}
-	
-
+	char input;
 	while (1)
 	{
-		v.show(m);
+		v.show(ori_map);
+		cout << endl;
+		cout << "Enter the direction key" << endl;
 		/*v.enter();//입력키 받는부분
-		m.move();*/
-		m.operator+();
-		if (m.countEmpty() == 0)
+		ori_map.move();*/
+		v.show(ori_map);
+		if (ori_map.countEmpty() == 0 && ori_map.check() == false)
 		{
-			if (m.check() == false)
-			{
-				cout << "Game Over!" << endl;
-				return 0;
-			}
+			cout << "Game Over!" << endl;
+			return 0;
 		}
-		
 	}
-	cin >> i;
-
 	return 0;
 }
