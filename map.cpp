@@ -54,7 +54,9 @@ void Map::operator+() {
 
 void Map::operator+(int num){
 	//int ranNum = rand() % (size*size) + 1;
+	cout << "here1" << endl;
 	int ranNum = make_random(countEmpty());
+	cout << "here2" << endl;
 	for (int i = 0; i < size; i++)
 	{
 		for (int j = 0; j < size; j++)
@@ -70,6 +72,7 @@ void Map::operator+(int num){
 				}
 				else 
 					b_count++;
+				return;
 			}
 		}
 	}
@@ -132,7 +135,8 @@ void Map::move(char input)
 								break;
 							}
 						}
-						k += cnt;
+						else
+							k += cnt;
 					}
 				}
 			}
@@ -140,12 +144,13 @@ void Map::move(char input)
 				int i = btemp ? m : size - m - 1;
 				if (arr[i] == 1) {
 					if (index != i) {
-						map[index][j] = map[i][j];
+						map[index][i].setNum(map[i][j].getNum());
+						map[index][i].setBonus(map[i][j].getBonus());
 						map[i][j].setNum(-1);
 						map[i][j].setBonus(0);
 						arr[i] = 0;
-						index += cnt;
 					}
+					index += cnt;
 				}
 			}
 		}
@@ -172,14 +177,15 @@ void Map::move(char input)
 						if (arr[k] == 1) {
 							int num2 = map[i][k].getNum();
 							if (num1 == num2) {
-								map_score.addScore(map[i][j], map[k][j]);
+								map_score.addScore(map[i][j], map[i][k]);
 								map[i][j].setNum(num1 + num2);
 								map[i][k].setNum(-1);
 								arr[k] = 0;
 								break;
 							}
 						}
-						k += cnt;
+						else
+							k += cnt;
 					}
 				}
 			}
@@ -187,12 +193,13 @@ void Map::move(char input)
 				int j = btemp ? m : size - m - 1;
 				if (arr[j] == 1) {
 					if (index != j) {
-						map[i][index] = map[i][j];
+						map[i][index].setNum(map[i][j].getNum());
+						map[i][index].setBonus(map[i][j].getBonus());
 						map[i][j].setNum(-1);
 						map[i][j].setBonus(0);
 						arr[j] = 0;
-						index += cnt;
 					}
+					index += cnt;
 				}
 			}
 		}
