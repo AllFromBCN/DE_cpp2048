@@ -16,7 +16,6 @@ Map::~Map() {
 	for (int i = 0; i < size; i++)
 		delete[] this->map[i];
     delete[] map;
-    map = NULL;
 }
 
 void Map::setSize(int s) {
@@ -44,17 +43,10 @@ int Map::countEmpty(){
 	return count;
 }
 
-/*int make_random(int max){
-	random_device rd;
-	mt19937_64 rng(rd());
-	uniform_int_distribution<__int64> dist(1, max); // random variable 만들기 위한 코드 
-	return dist(rng);
-}*/
-
 int make_random(int max) {
 	int secretNumber = 0;
 	srand(unsigned(time(0)));
-	secretNumber = rand() % max;
+	secretNumber = ( rand() % max )+1;
 	return secretNumber;
 }
 
