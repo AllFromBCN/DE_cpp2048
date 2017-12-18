@@ -1,6 +1,4 @@
 #include "visual.h"
-#include <string>
-
 using namespace std;
 
 int main()
@@ -39,15 +37,15 @@ int main()
 			cout << "Out of range. Please re-enter" << endl;
 		}
 	}
-	char input;
+	char key;
 	while (1)
 	{
 		v.show(ori_map);
 		cout << endl;
 		cout << "Enter the direction key" << endl;
-		/*v.enter();//입력키 받는부분
-		ori_map.move();*/
-		v.show(ori_map);
+        cin >> key;
+		ori_map.move(v.input(key));//입력키 받는부분
+
 		if (ori_map.countEmpty() == 0 && ori_map.check() == false)
 		{
 			cout << "Game Over!" << endl;
