@@ -44,28 +44,20 @@ void Visual::show(Map& map) const
 	}
 };
 
-char Visual::input(char key)
+char Visual::input(string key)
 {
-    if (key=='a') // LEFT
+    if (key=="a") // LEFT
         return 'l';
 
-    else if (key=='w') // UP
+    else if (key=="w") // UP
         return 'u';
 
-    else if (key=='s') // DOWN
+    else if (key=="s") // DOWN
         return 'd';
 
-    else if (key=='d')  // RIGHT
+    else   // RIGHT
         return 'r';
 
-   else{
-        cout << "You have inserted something other than 'a','s','d',w'" << endl;
-		cout << "Re-Enter the direction key" << endl;
-		char rekey;
-		cin >> rekey;
-		cin.ignore();
-		input(rekey);
-	}
 };
 
 
