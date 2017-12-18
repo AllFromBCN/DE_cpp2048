@@ -17,7 +17,7 @@ public:
 	~Visual() {}
 
 	void show(Map& map) const;
-    char input(char key);
+    char input(string key);
 };
 #else
 #endif
