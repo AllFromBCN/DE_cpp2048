@@ -1,6 +1,8 @@
 #include "map.h"
 #include <stdlib.h>
 #include <random>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -11,6 +13,10 @@ Map::Map() {
 }
 
 Map::~Map() {
+	for (int i = 0; i < size; i++)
+	{
+		delete[] this->map[i];
+	}
     delete[] map;
     map = NULL;
 }
@@ -40,11 +46,18 @@ int Map::countEmpty(){
 	return count;
 }
 
-int make_random(int max){
+/*int make_random(int max){
 	random_device rd;
 	mt19937_64 rng(rd());
 	uniform_int_distribution<__int64> dist(1, max); // random variable 만들기 위한 코드 
 	return dist(rng);
+}*/
+
+int make_random(int max) {
+	int secretNumber = 0;
+	srand(unsigned(time(0)));
+	secretNumber = rand() % max;
+	return secretNumber;
 }
 
 void Map::operator+() {
@@ -54,9 +67,7 @@ void Map::operator+() {
 
 void Map::operator+(int num){
 	//int ranNum = rand() % (size*size) + 1;
-	cout << "here1" << endl;
 	int ranNum = make_random(countEmpty());
-	cout << "here2" << endl;
 	for (int i = 0; i < size; i++)
 	{
 		for (int j = 0; j < size; j++)
@@ -153,6 +164,7 @@ void Map::move(char input)
 					index += cnt;
 				}
 			}
+			delete[] arr;
 		}
 	}
 	else if (input == 'l' || input == 'r') {
@@ -202,6 +214,7 @@ void Map::move(char input)
 					index += cnt;
 				}
 			}
+			delete arr;
 		}
 	}
 }
