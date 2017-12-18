@@ -5,17 +5,21 @@ using namespace std;
 Score::Score() {}
 Score::~Score() {}
 
-void Score::addScore(Block b1, Block b2)
+void Score::addScore(Block& b1, Block& b2)
 {
 	int temp = b1.getNum() + b2.getNum();
-	if (b1.getBonus() == true)
-		temp *= 2;
-	if (b2.getBonus() == true)
-		temp *= 2;
-	score += temp;
-}
+	if (temp >= 10000)
+		throw 'a';
 
-int Score::getScore()
-{
-	return score;
+	if (b1.getBonus() == true)
+	{
+		temp *= 2;
+		b1.setBonus(false);
+	}
+	if (b2.getBonus() == true)
+	{
+		temp *= 2;
+		b2.setBonus(false);
+	}		
+	score += temp;
 }
