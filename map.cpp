@@ -26,8 +26,8 @@ int Map::getSize() {
 	return size;
 }
 
-int Map::showScore(){
-	return map_score.getScore();
+int Map::getScore(){
+	return score;
 }
 
 int Map::countEmpty(){
@@ -56,7 +56,6 @@ void Map::operator+() {
 }
 
 void Map::operator+(int num){
-	//int ranNum = rand() % (size*size) + 1;
 	int ranNum = make_random(countEmpty());
 	for (int i = 0; i < size; i++)
 	{
@@ -143,7 +142,7 @@ void Map::move(char input)
 						if (arr[k] == 1) {
 							int num2 = map[k][j].getNum();
 							if (num1 == num2) {
-								map_score.addScore(map[i][j], map[k][j]);
+								addScore(map[i][j], map[k][j]);
 								map[i][j].setNum(num1 + num2);
 								map[k][j].setNum(-1);
 								arr[k] = 0;
@@ -196,7 +195,7 @@ void Map::move(char input)
 						if (arr[k] == 1) {
 							int num2 = map[i][k].getNum();
 							if (num1 == num2) {
-								map_score.addScore(map[i][j], map[i][k]);
+								addScore(map[i][j], map[i][k]);
 								map[i][j].setNum(num1 + num2);
 								map[i][k].setNum(-1);
 								arr[k] = 0;
