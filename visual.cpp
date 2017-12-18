@@ -3,15 +3,13 @@
 const 함수 : map print 시
 */
 
-//#define defaultSize 4
-
 #include "visual.h"
 
 using namespace std;
 
 void Visual::show(Map& map) const
 {
-	cout << "Score : " << map.showScore()<< endl;
+	cout << "Score : " << map.getScore()<< endl;
 	for (int i = 0; i<map.getSize(); i++)
 	{
 		for (int j = 0; j<map.getSize(); j++)
@@ -46,23 +44,15 @@ void Visual::show(Map& map) const
 
 char Visual::input(string key)
 {
-    if (key=="a") // LEFT
-        return 'l';
+	if (key == "a") // LEFT
+		return 'l';
 
-    else if (key=="w") // UP
-        return 'u';
+	else if (key == "w") // UP
+		return 'u';
 
-    else if (key=="s") // DOWN
-        return 'd';
+	else if (key == "s") // DOWN
+		return 'd';
 
-    else   // RIGHT
-        return 'r';
-
+	else   // RIGHT
+		return 'r';
 };
-
-
-
-/*
-template <typename T>
-void Visual::input(T& inputDir);
-void Visual::input(int);*/
