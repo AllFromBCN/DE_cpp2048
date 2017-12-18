@@ -79,8 +79,10 @@ void Map::operator+(int num){
 	}
 }
 
-bool Map::check()
+int Map::check()
 {
+	int arr[2] = { 0, };
+
 	for (int i = 0; i < size; i++)
 	{
 		for (int j = 0; j < size; j++)
@@ -90,19 +92,30 @@ bool Map::check()
 			int center = map[i][j].getNum();
 
 			if (i - 1 >= 0 && center == map[i - 1][j].getNum())
-					return true;
+				arr[0] = 1;
+					//return 3;
 
 			if (j - 1 >= 0 && center == map[i][j - 1].getNum())
-					return true;
+				arr[1] = 1;
+					//return 2;
 
 			if (j + 1 < size && center == map[i][j + 1].getNum())
-					return true;
+				arr[1] = 1;
+					//return 2;
 
-			if (i + 1 < size && center == map[i+1][j].getNum())
-					return true;
+			if (i + 1 < size && center == map[i + 1][j].getNum())
+				arr[0] = 1;
+					//return 3;
 		}
 	}
-	return false;
+	if (arr[0] == 1 && arr[1] == 1)
+		return 4;
+	else if (arr[0] == 1 && arr[1] == 0)
+		return 3;
+	else if (arr[0] == 0 && arr[1] == 1)
+		return 2;
+	else
+		return 0;
 }
 
 void Map::move(char input)
