@@ -14,9 +14,7 @@ Map::Map() {
 
 Map::~Map() {
 	for (int i = 0; i < size; i++)
-	{
 		delete[] this->map[i];
-	}
     delete[] map;
     map = NULL;
 }
@@ -214,7 +212,7 @@ void Map::move(char input)
 					index += cnt;
 				}
 			}
-			delete arr;
+			delete[] arr;
 		}
 	}
 }
