@@ -58,9 +58,14 @@ char Visual::input(char key)
     else if (key=='d')  // RIGHT
         return 'r';
 
-    else{
+   else{
         cout << "You have inserted something other than 'a','s','d',w'" << endl;
-    }
+		cout << "Re-Enter the direction key" << endl;
+		char rekey;
+		cin >> rekey;
+		cin.ignore();
+		input(rekey);
+	}
 };
 
 
