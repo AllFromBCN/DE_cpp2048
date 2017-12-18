@@ -5,9 +5,9 @@
 
 using namespace std;
 
-class Map{
+class Map : public Score
+{
     int size = 0;
-	Score map_score;
 	int b_count = 0; // bonus count -> 10번마다 bonus나오게
 
 public:
@@ -17,14 +17,13 @@ public:
 
 	void setSize(int);
 	int getSize();
-	int showScore();
+	int getScore();
 
 	int countEmpty();
 	void operator+();
 	void operator+(int);
-	bool check();
+	int check();
     void move(char input); // 방향키값
 };
 #else
 #endif
-
