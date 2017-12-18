@@ -6,7 +6,6 @@ const 함수 : map print 시
 //#define defaultSize 4
 
 #include "visual.h"
-#include <string>
 
 using namespace std;
 
@@ -44,6 +43,28 @@ void Visual::show(Map& map) const
 		cout << endl;
 	}
 };
+
+char Visual::input(char key)
+{
+    if (key=='a') // LEFT
+        return 'l';
+
+    else if (key=='w') // UP
+        return 'u';
+
+    else if (key=='s') // DOWN
+        return 'd';
+
+    else if (key=='d')  // RIGHT
+        return 'r';
+
+    else{
+        cout << "You have inserted something other than 'a','s','d',w'" << endl;
+    }
+};
+
+
+
 /*
 template <typename T>
 void Visual::input(T& inputDir);
