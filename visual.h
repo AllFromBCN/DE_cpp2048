@@ -17,9 +17,7 @@ public:
 	~Visual() {}
 
 	void show(Map& map) const;
-	/*template <typename T>
-	void input(T& inputDir);
-	void input(int);*/
+    char input(char key);
 };
 #else
 #endif
