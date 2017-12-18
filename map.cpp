@@ -144,8 +144,8 @@ void Map::move(char input)
 				int i = btemp ? m : size - m - 1;
 				if (arr[i] == 1) {
 					if (index != i) {
-						map[index][i].setNum(map[i][j].getNum());
-						map[index][i].setBonus(map[i][j].getBonus());
+						map[index][j].setNum(map[i][j].getNum());
+						map[index][j].setBonus(map[i][j].getBonus());
 						map[i][j].setNum(-1);
 						map[i][j].setBonus(0);
 						arr[i] = 0;
