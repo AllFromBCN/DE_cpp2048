@@ -9,13 +9,13 @@
 using namespace std;
 
 class Score{
-	int score = 0;
 
 public:
+	int score = 0;
 	Score();
 	~Score();
-	void addScore(Block, Block);
-	int getScore();
+	void addScore(Block&, Block&);
+	virtual int getScore() = 0;
 };
 #else
 #endif
