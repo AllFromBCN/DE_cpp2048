@@ -90,24 +90,23 @@ int Map::check()
 			if (i % 2 != j % 2)
 				continue;
 			int center = map[i][j].getNum();
+			if (center == -1)
+				continue;
 
 			if (i - 1 >= 0 && center == map[i - 1][j].getNum())
 				arr[0] = 1;
-					//return 3;
 
 			if (j - 1 >= 0 && center == map[i][j - 1].getNum())
 				arr[1] = 1;
-					//return 2;
 
 			if (j + 1 < size && center == map[i][j + 1].getNum())
 				arr[1] = 1;
-					//return 2;
 
 			if (i + 1 < size && center == map[i + 1][j].getNum())
 				arr[0] = 1;
-					//return 3;
 		}
 	}
+
 	if (arr[0] == 1 && arr[1] == 1)
 		return 4;
 	else if (arr[0] == 1 && arr[1] == 0)
@@ -120,6 +119,7 @@ int Map::check()
 
 void Map::move(char input)
 {
+	int check_m = 0;
 	if (input == 'u' || input == 'd') {
 		bool btemp = (input == 'u') ? true : false;
 
@@ -128,12 +128,13 @@ void Map::move(char input)
 
 			for (int i = 0; i < size; i++)
 				arr[i] = (map[i][j].getNum() == -1) ? 0 : 1;
-				
+			
 			int index = btemp ? 0 : size - 1;
 			int cnt = btemp ? +1 : -1;
-
+			
 			for (int m = 0; m < size; m++) {
 				int i = btemp ? m : size - m - 1;
+				
 				if (arr[i] == 1) {
 					int num1 = map[i][j].getNum();
 					int k = btemp ? i + 1 : i - 1;
@@ -146,14 +147,16 @@ void Map::move(char input)
 								map[i][j].setNum(num1 + num2);
 								map[k][j].setNum(-1);
 								arr[k] = 0;
+								check_m++;
 								break;
 							}
+							else break;
 						}
-						else
-							k += cnt;
+						k += cnt;
 					}
 				}
 			}
+			
 			for (int m = 0; m < size; m++) {
 				int i = btemp ? m : size - m - 1;
 				if (arr[i] == 1) {
@@ -163,6 +166,7 @@ void Map::move(char input)
 						map[i][j].setNum(-1);
 						map[i][j].setBonus(0);
 						arr[i] = 0;
+						check_m++;
 					}
 					index += cnt;
 				}
@@ -196,11 +200,12 @@ void Map::move(char input)
 								map[i][j].setNum(num1 + num2);
 								map[i][k].setNum(-1);
 								arr[k] = 0;
+								check_m++;
 								break;
 							}
+							else break;
 						}
-						else
-							k += cnt;
+						k += cnt;
 					}
 				}
 			}
@@ -213,6 +218,7 @@ void Map::move(char input)
 						map[i][j].setNum(-1);
 						map[i][j].setBonus(0);
 						arr[j] = 0;
+						check_m++;
 					}
 					index += cnt;
 				}
@@ -220,4 +226,6 @@ void Map::move(char input)
 			delete[] arr;
 		}
 	}
+	if (check_m == 0)
+		throw 1;
 }
